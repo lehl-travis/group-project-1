@@ -4,12 +4,16 @@
 
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
     <title>Simple caprese salad</title>
+    <script src="assets/myscripts.js"></script>
 </head>
 
 <body>
     <header>
         <section>
-            <h2>Simple caprese salad</h2>
+            <div class="title">
+                <h2>Simple Caprese Salad</h2>
+            </div>
+            
             <p>A spin on the standard <a href="https://en.wikipedia.org/wiki/Caprese_salad">caprese salad</a>.</p>
         </section>
         <section>
@@ -60,6 +64,9 @@
                 <div>
                     <label for="review">Review:</label>
                     <textarea id="review" cols="60" rows="5"></textarea>
+                </div>
+                <div>
+                    <button onclick="handleSubmit()">Submit</button>
                 </div>
             </form>
         </section>

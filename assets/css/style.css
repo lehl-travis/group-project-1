@@ -1,4 +1,4 @@
-/* Universal selector */
+Universal selector
 * {
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
@@ -8,14 +8,16 @@ body {
   background-color: lemonchiffon;
 }
 
-header,
-footer {
+
+.title {
   width: 100%;
-  height: 100px;
+  height: 30px;
   /*line-height: 100px;*/
   color: #111110;
   background-color: #191970;
+  color: white;
 }
+
 
 figure {
   width: 200px;
