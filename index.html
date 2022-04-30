@@ -1,10 +1,8 @@
 <html>
 
 <head>
-
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
     <title>Simple caprese salad</title>
-    <script src="assets/myscripts.js"></script>
 </head>
 
 <body>
@@ -13,19 +11,18 @@
             <div class="title">
                 <h2>Simple Caprese Salad</h2>
             </div>
-            
             <p>A spin on the standard <a href="https://en.wikipedia.org/wiki/Caprese_salad">caprese salad</a>.</p>
         </section>
-        <section>
 
+        <section>
             <p>Traditionally, the caprese salad calls for sliced tomatoes and slices of mozzarella. This version uses cherry
                 tomatoes, and either mozzarella balls or small cubes of the cheese. This gives you a salad that's a bit more
                 like a salad, and works better as a side item. In addition, the cherry tomatoes are a bit sweeter, which
                 brings a little more brightness to the dish.</p>
-           
-                <p>The recipe below is designed to act as a guide, and not something to be followed prescriptively. Play with your
+            <p>The recipe below is designed to act as a guide, and not something to be followed prescriptively. Play with your
                 food! Adjust amounts based on your tastes.</p>
         </section>
+
     </header>
     <article>
         <section id="ingredients">
@@ -53,44 +50,42 @@
             </ul>
         </section>
     </article>
+
     <footer>
-        <section>
-            <h3>Leave a review!</h3>
-            <form>
-                <div>
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" />
+        <!---Erased Review section for now -->
+        <section id="searchMap">
+            <!-- Create a form for the map. User will enter in their zipcode and groceries nearby will appear.-->
+            <div id = "locationList">
+                <form id ="search-nearby">
+                    <label class = "form-location" for ="zipCode"> Enter zipcode</label>
+                    <input 
+                    name = "zipCode"
+                    id = "zipCode"
+                    type = "text"
+                    autofocus = "true"
+                    class = "form-input" 
+                    style = "text-align:center">
+                    <button type = "submit" class = "btn">Search Nearby</button>
+                </form>
+
+                <!-- The locations pulled by the google maps API will appear and append here-->
+                <div class ="locations">
+                    <h4 class = "mapHeader">
+                        Showing grocery stores within a 10 mile radius of your zip code<span id ="given-zip-code"></span>
+                    </h4>"
+                    <div id ="locations-container" class ="list-group"></div>
                 </div>
-                <div>
-                    <label for="review">Review:</label>
-                    <textarea id="review" cols="60" rows="5"></textarea>
-                </div>
-                <div>
-                    <button onclick="handleSubmit()">Submit</button>
-                </div>
-            </form>
-        </section>
-        <section>
-            <h3>Reviews</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Email</th>
-                        <th>Review</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>mrslagos1592@yahoo.com</td>
-                        <td>Loved it!!</td>
-                    </tr>
-                    <tr>
-                        <input email address for review>
-                    </tr>
-                </tbody>
-            </table>
+            </div>
+            <!--Actual Map Location-->
+            <div id = "panel"></div>
+            <div id = "map"></div>
         </section>
     </footer>
+    <!--REMINDER TO FIX THE FOLDER LOCATION FOR the JAVA SCRIPT-->
+
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1uHrdOFkfsyLHmfC8FZptMDCmH9SvUow&libraries=places&callback=initMap"></script>
+    <script src = "./assets/js/scripts.js"></script>
+
 </body>
 
 </html>
