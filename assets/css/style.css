@@ -1,6 +1,7 @@
 Universal selector
 * {
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  box-sizing:border-box;
 }
 
 /* Element selectors */
@@ -32,4 +33,55 @@ figure {
 /* ID selector */
 #contact-section {
   background-color: #f0ead6;
+}
+
+/*************FOR MAP ***********/
+/***********************************/
+/***********************************/
+
+#mapAndResults{
+  margin-top: 20px;
+  width: 100%;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content: space-around;
+  height: 400px;
+}
+
+#googleMap{
+    width: 60%;
+    height: 100%;
+}
+
+#location-container{
+  width: 35%;
+  flex-wrap:wrap;
+  align-items:flex-start;
+  padding-left:10px;
+  height: 100%;
+}
+
+#search-nearby{
+  width:100%;
+  display:flex;
+  flex-wrap:wrap;
+  flex:1;
+  justify-content: flex-start;
+}
+
+#locations-list img{
+  max-width:100px;
+  max-height:100px;
+  flex-wrap:wrap;
+}
+
+.form-entry{
+  margin-right: 20px;
+}
+
+#results{
+  flex-wrap:wrap;
+  width:100%;
+  padding-top:20px;
 }
