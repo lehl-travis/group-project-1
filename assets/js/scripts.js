@@ -3,9 +3,6 @@ function handleSubmit() {
     var actualText = reviewText.value;
     console.log(actualText);
 }
-/********************** */
-/*Map Section START*/
-
 
 /*MAP Global Variables*/
 var locationListEl = document.querySelector('#locatons-list');
@@ -24,6 +21,94 @@ var pos = {
     lng: longitude
 }
 
+/*Tasty Recipe Variables*/
+var recipeNumber;
+var requestUrl;
+var recipeTitle = document.querySelector('title');
+var divNumber = document.getElementById('recipe');
+var title = document.querySelector('#title');       //grabs div container
+var infoSection = document.querySelector('#info');
+var servingSize = document.querySelector('#serving');
+var ingredientList = document.querySelector('#ingredient-list');
+var instructionsEl = document.querySelector('#instructions');
+var h2Title = document.createElement("h2");
+var recipeInfo = document.createElement("p");
+var ingredientsEl = document.createElement("li");
+const options = {
+ 	method: 'GET',
+ 	headers: {
+ 		'X-RapidAPI-Host': 'tasty.p.rapidapi.com',
+ 		'X-RapidAPI-Key': '4e55798e4amshb2bd5f7a45adbd1p1e06e7jsna7426a55f7cd'
+ 	}
+ };
+
+//SECTION TO GENERATE RECIPES USING TASTY's API//
+function getTastyAPI(){
+    recipeNumber = divNumber.getAttribute('data-number');
+
+    if(recipeNumber == 2){
+        requestUrl = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q=salad';
+    }else if(recipeNumber == 3){
+        requestUrl = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q=meat';
+    }else if(recipeNumber == 4){
+        requestUrl = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q=dessert';
+    }
+    console.log(recipeNumber, requestUrl);
+    
+    fetch(requestUrl, options)
+        .then(response => response.json())
+            .then(function(data){
+                //this is to choose the first recipe in this section
+                var itemNum = 0;
+                //extract title information
+                h2Title.textContent = data.results[itemNum].name;
+                title.appendChild(h2Title);
+
+                //if can find information or paragraph of text, insert here
+
+                //extract information for serving size
+                var servings = data.results[itemNum].yields.slice(-2);
+                if( servings > 1)
+                    servingSize.textContent = servings + " people";
+                else
+                    servingSize.textContent =servings + " person";
+                
+                //extract ingredient list
+                //data can have 2 for loops if ingredients in recipe are broken into sections
+                if(data.results[itemNum].sections.length>1){
+                    for(var i=0; i< data.results[itemNum].sections.length; i++){
+                        for(var j=0; j<data.results[itemNum].sections[i].components.length; j++){
+                            var ingredientListItem = document.createElement('li');
+                            ingredientListItem.textContent = data.results[itemNum].sections[i].components[j].raw_text;
+                            ingredientList.appendChild(ingredientListItem);
+                        }
+                    }
+                }
+                else{
+                    for(var i=0; i< data.results[itemNum].sections.length; i++){
+                        for(var j=0; j<data.results[itemNum].sections[i].components.length; j++){
+                            var ingredientListItem = document.createElement('li');
+                            ingredientListItem.textContent = data.results[itemNum].sections[i].components[j].raw_text;
+                            ingredientList.appendChild(ingredientListItem);
+                        }
+                    }
+                }
+
+                //extract instruction information
+                for( var i=0; i<data.results[itemNum].instructions.length;i++){
+                    var instructionlistItem = document.createElement('li');
+                    instructionlistItem.textContent = data.results[itemNum].instructions[i].display_text;
+                    instructionsEl.appendChild(instructionlistItem);
+                }
+            });
+}
+
+//call function getTastyAPI
+getTastyAPI();
+
+//END of SECTION FOR TASTY API//
+
+//START of SECTION FOR MAP//
 //initializes the map
 function myMap(){
     //initialize the information window that appears over

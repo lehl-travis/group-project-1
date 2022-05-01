@@ -9,8 +9,8 @@ body {
   background-color: lemonchiffon;
 }
 
-
-.title {
+/*changed this to an id*/
+#title {
   width: 100%;
   height: 30px;
   /*line-height: 100px;*/
