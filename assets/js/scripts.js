@@ -3,6 +3,10 @@ function handleSubmit() {
     var actualText = reviewText.value;
     console.log(actualText);
 }
+/********************** */
+/*Map Section START*/
+
+
 /*MAP Global Variables*/
 var locationListEl = document.querySelector('#locatons-list');
 var submitButton = document.querySelector('#search-nearby');
@@ -22,29 +26,34 @@ var pos = {
 
 //initializes the map
 function myMap(){
-    console.log("wheres my map");
+    //initialize the information window that appears over
+    //a selected location//
     infoWindow = new google.maps.InfoWindow;
     currentInfoWindow = infoWindow;
 
+    //contanier to store the places that get found nearby.
     infoPane = document.getElementById('locations-list');
     //mapProp defines map properties to set up the parameters
     mapProp = {
         //using variables to have lat and lng be where user enters address
-        //center: new google.maps.LatLng(lat,lng),
         center: new google.maps.LatLng(latitude,longitude),
+        //zoom level of map, can be changed.
         zoom:14
     };
 
-    //creates a new map inside the div elment with the same ID
+    //creates a new map inside the div elment with the same ID in the html
     map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
     //event listener - runs a function to get the coordinates of the address entered.
     submitButton.addEventListener('submit', geoLocation);
+
+    //if an input was made, then the position of the center of the map changes.
     if(submitButton){
         pos = {
             lat: latitude,
             lng: longitude
         }
+        //Infowindow location also changes to new center.
         infoWindow.setPosition(new google.maps.LatLng(latitude,longitude));
         infoWindow.setContent('Location found.');
         infoWindow.open(map);
@@ -66,7 +75,6 @@ function geoLocation (){
          if (status == google.maps.GeocoderStatus.OK){
             latitude = results[0].geometry.location.lat();
             longitude = results[0].geometry.location.lng();
-            //console.log(results);
 
             //this sets the new center of the map at the given address
             map.setCenter(new google.maps.LatLng(latitude, longitude));
@@ -74,7 +82,10 @@ function geoLocation (){
                 lat: latitude,
                 lng: longitude
             }
+
+            //this function is called to look for places nearby the given address
             getNearbyPlaces(pos);
+            //catch an error
          }else{
              alert("request failed.")
          }
@@ -85,6 +96,8 @@ function geoLocation (){
 
 //function to look for grocery stores nearby
 function getNearbyPlaces(position){
+    //create an object to set up the parameters to find
+    //grocery stores nearby within a radius of 3000 meters.
     var request = {
         location: position,
         rankBy: google.maps.places.RankBy.Distance,
@@ -92,21 +105,22 @@ function getNearbyPlaces(position){
         radius: 3000
     };
 
+    //using the method under the google maps API to pull information of the location
     service = new google.maps.places.PlacesService(map);
+    //a function is initiated to call places with the earlier object parameters.
     service.nearbySearch(request,nearbyCallback);
 }
 
-//decide how many results to show
+//creates markers for places nearby that meets the keyword and radius request
 function nearbyCallback(results, status){
     if (status === google.maps.places.PlacesServiceStatus.OK){
-       console.log(status + " " + google.maps.places.PlacesServiceStatus.OK);
         createMarkers(results);
     }
 }
 
-//set markers ath the location of each place result
+//set markers at the location of each place result
 function createMarkers(places){
-    console.log(places);
+    // for each place in the places array, create a marker
     places.forEach(place =>{
         var marker = new google.maps.Marker({
             position : place.geometry.location,
@@ -115,6 +129,7 @@ function createMarkers(places){
         });
 
         //Add event listeners to each marker to show details
+        //when clicked.
         google.maps.event.addListener(marker, 'click', () => {
             var request = {
                 placeId: place.place_id,
@@ -122,7 +137,7 @@ function createMarkers(places){
                 'website','photos']
             };
 
-            ////only show details when click on marker
+            ////only show details when marker is clicked
             service.getDetails(request,(placeResult, status) => {
                 showDetails(placeResult, marker, status)
             });
@@ -130,7 +145,9 @@ function createMarkers(places){
     });
 }
 
+//function to display details of the marker. 
 function showDetails(placeResult, marker, status){
+    //if the array is not empty, then show a window if not already being shown.
     if(status == google.maps.places.PlacesServiceStatus.OK){
         var placeInfoWindow = new google.maps.InfoWindow();
         placeInfoWindow.setContent('<div><strong>' + placeResult.name + '</strong><br>'
@@ -144,6 +161,8 @@ function showDetails(placeResult, marker, status){
     }
 }
 
+//appends the information of a selected marker into the container besides the map
+//and below the form.
 function showPanel(placeResult){
     if(infoPane.classList.contains("open"))
         infoPane.classList.remove("open");
@@ -151,7 +170,7 @@ function showPanel(placeResult){
     while(infoPane.lastChild){
         infoPane.removeChild(infoPane.lastChild);
     }
-
+    //if the location has a photo, display it above its information.
     if(placeResult.photos){
         var firstPhoto = placeResult.photos[0];
         var photo = document.createElement('img');
@@ -160,6 +179,7 @@ function showPanel(placeResult){
         infoPane.appendChild(photo);
     }
 
+    //append and create the inside of the list div with the place information.
     var name = document.createElement('h3');
     name.classList.add('place');
     name.textContent = placeResult.name;
@@ -168,6 +188,9 @@ function showPanel(placeResult){
     address.classList.add('details');
     address.textContent = placeResult.formatted_address;
     infoPane.appendChild(address);
+
+    //if there is a website included with the information
+    //of the location, create the text with links to that website.
     if (placeResult.website) {
         let websitePara = document.createElement('p');
         let websiteLink = document.createElement('a');

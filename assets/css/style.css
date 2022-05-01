@@ -39,6 +39,9 @@ figure {
 /***********************************/
 /***********************************/
 
+/*This is the container for the section
+of the map and the form. Used flex-box
+to keep both containers in the same line*/
 #mapAndResults{
   margin-top: 20px;
   width: 100%;
@@ -49,11 +52,17 @@ figure {
   height: 400px;
 }
 
+/*The map will take up a little more than
+half the width and the full height of the
+mapAndResults container*/
 #googleMap{
     width: 60%;
     height: 100%;
 }
 
+/*The location-container
+holds the form and the div with
+the appended list of stores nearby*/
 #location-container{
   width: 35%;
   flex-wrap:wrap;
@@ -62,6 +71,7 @@ figure {
   height: 100%;
 }
 
+/*form for user imput*/
 #search-nearby{
   width:100%;
   display:flex;
@@ -70,6 +80,8 @@ figure {
   justify-content: flex-start;
 }
 
+/*The image that appears when 
+the user selects on a marker*/
 #locations-list img{
   max-width:100px;
   max-height:100px;
@@ -80,6 +92,8 @@ figure {
   margin-right: 20px;
 }
 
+/*The appendd list of a marker
+from the maps*/
 #results{
   flex-wrap:wrap;
   width:100%;
