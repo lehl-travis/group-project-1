@@ -33,3 +33,18 @@ figure {
 #contact-section {
   background-color: #f0ead6;
 }
+
+/* input styles */
+#email {
+  margin-bottom: 10px;
+}
+
+/* review styles */
+#email-heading {
+  border-bottom: 2px solid black;
+  margin-right: 100px;
+}
+
+#review-heading {
+  border-bottom: 2px solid black;
+}
