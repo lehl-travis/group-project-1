@@ -169,3 +169,10 @@ from the maps*/
   width:100%;
   padding-top:20px;
 }
+
+.hero-body{
+  background-image: url(../images/cap\ salad.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
