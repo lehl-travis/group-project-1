@@ -9,12 +9,6 @@ body {
   background-color: lemonchiffon;
 }
 
-<<<<<<< HEAD
-/*changed this to an id*/
-#title {
-  width: 100%;
-  height: 30px;
-=======
 .container {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -23,7 +17,6 @@ body {
 /*changed this to an id*/
 .header {
   grid-column: span 12;
->>>>>>> cae3308e752d0a1da426d81df6aa05d7ed04ee8e
   /*line-height: 100px;*/
   color: #111110;
   background-color: #191970;
@@ -175,25 +168,4 @@ from the maps*/
   flex-wrap:wrap;
   width:100%;
   padding-top:20px;
-<<<<<<< HEAD
-=======
-}
-
-@media screen and (max-width: 768px) {
-    .navigation-menu {
-        grid-column: span 6;
-    }
-    .main-content {
-        grid-column: span 6;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .navigation-menu {
-        grid-column: span 12;
-    }
-    .main-content {
-        grid-column: span 12;
-    }
->>>>>>> cae3308e752d0a1da426d81df6aa05d7ed04ee8e
 }

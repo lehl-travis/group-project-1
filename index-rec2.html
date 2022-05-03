@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-<html>
-=======
-html>
->>>>>>> cae3308e752d0a1da426d81df6aa05d7ed04ee8e
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
@@ -11,37 +8,40 @@ html>
 
 <!--the data-number here will be looked at to figure out which recipe to display-->
 <body id="recipe" data-number ="2">
-    <!-- header for recipe-->
-    <header>
-        <!--INSERT HERE h2 TITLE-->
-        <div id="title"></div>
-
-        <!--container for any information-->
-        <!--INSERT HERE p recipeInfo-->
-        <section id = info></section>
-    </header>
+    <div class = "container">
+        <!-- header for recipe-->
+        <div class = "header">
+            <div id="title"></div>
+        </div>
+    </div>
+    <div class="navigation-menu">
+        <h2>Choose Your Meal</h2>
+        <ul class="navigation">
+            <li class="navigation"><a href="./index-rec2.html" class="nav-buttons">Salad</a></li>
+            <li class="navigation"><a href="./index-rec3.html" class="nav-buttons">Entree</a></li>
+            <li class="navigation"><a href="./index-rec4.html" class="nav-buttons">Dessert</a></li>
+        </ul>
+    </div>
 
     <!-- body of recipe-->
-    <article>
-        <section id="ingredients">
+    <div class="main-content">
+        <div id="ingredients">
             <h3>Ingredients</h3>
-
             <!--get serving size from recip api-->
-            <!--Get query selecter for section, INSERT SPAN HERE-->
             <p>Serves <span id ="serving"></span></p>
             <!--Get query selector for this UL ingredient-list & INSERT LI item here-->
             <ul id="ingredient-list"></ul>
-        </section>
+        </div>
 
         <!--Append instructions list here-->
-        <section>
+        <div>
             <h3>Preparation</h3>
             <!--Get query selector for instructions,INSERT LI items here -->
             <ul id="instructions"></ul>
-        </section>
-    </article>
+        </div>
+    </div>
 
-    <footer>
+    <div class = "footer">
         <section>
             <h3>Leave a review!</h3>
             <form>
@@ -57,26 +57,6 @@ html>
                     <button onclick="handleSubmit()">Submit</button>
                 </div>
             </form>
-        </section>
-        <section>
-            <h3>Reviews</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Email</th>
-                        <th>Review</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>mrslagos1592@yahoo.com</td>
-                        <td>Loved it!!</td>
-                    </tr>
-                    <tr>
-                        <input email address for review>
-                    </tr>
-                </tbody>
-            </table>
         </section>
 
         <!-- VALERIE API MAP SECTION STARTS HERE-->
