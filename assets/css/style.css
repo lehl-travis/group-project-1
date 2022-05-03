@@ -33,3 +33,9 @@ figure {
 #contact-section {
   background-color: #f0ead6;
 }
+.hero-body{
+  background-image: url(../images/cap\ salad.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
