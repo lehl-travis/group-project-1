@@ -113,13 +113,13 @@ figure {
 of the map and the form. Used flex-box
 to keep both containers in the same line*/
 #mapAndResults{
+  margin-top: 20px;
+  width: 100%;
+  display:flex;
   flex-wrap:wrap;
   align-items:center;
   justify-content: space-around;
-  height: 300px;
-  margin-bottom:13px;
-  margin-right:12px;
-  border-radius:2px;
+  height: 400px;
 }
 
 /*The map will take up a little more than
@@ -170,9 +170,20 @@ from the maps*/
   padding-top:20px;
 }
 
-.hero-body{
-  background-image: url(../images/cap\ salad.jpeg);
-  background-repeat: no-repeat;
-  background-size: cover;
+@media screen and (max-width: 768px) {
+    .navigation-menu {
+        grid-column: span 6;
+    }
+    .main-content {
+        grid-column: span 6;
+    }
+}
 
+@media screen and (max-width: 480px) {
+    .navigation-menu {
+        grid-column: span 12;
+    }
+    .main-content {
+        grid-column: span 12;
+    }
 }
