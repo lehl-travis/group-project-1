@@ -5,11 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
-   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <title>Recipe Generator</title>
-  
 </head>
 
 <body>
@@ -19,10 +17,10 @@
         </p>
     <p class="panel-tabs">
       <a class="is-active">All</a>
-      <a>SALAD</a>
-      <a>DESERT</a>
-      <a>SOUP</a>
-      <a>MAIN ENTREE</a>
+      <a href="./index.html">SALAD</a>
+      <a href="./index-rec2.html">SOUP</a>
+      <a href="./index-rec3.html">MAIN ENTREE</a>
+      <a href="./index-rec4.html">DESERT</a>
     </p>
     </article>
     <div class="tile is-ancestor">
@@ -30,10 +28,10 @@
             <div class="tile">
                 <div class="tile is-parent is-vertical">
                     <article class="tile is-child notification is-primary hero-body">
-                        <p class="title"><a href="https://en.wikipedia.org/wiki/Caprese_salad">
+                        <p class="title" id="title">Caprese Salad</p>
+                        <p class="subtitle"id="subheader" ><a href="https://en.wikipedia.org/wiki/Caprese_salad">
                                 A spin on the standard </a>
                         </p>
-                        <p class="subtitle">Caprese Salad</p>
                     </article>
                 </div>
             </div>
@@ -51,10 +49,9 @@
                             class = "form-location" 
                             class = "form-entry"
                             for = "zipCode">
-                            Enter Address 
+                            Enter Address
                         </label>
-
-                        <input 
+                        <input
                             name = "zipCode"
                             class = "form-entry"
                             id = "zipCode"
@@ -62,7 +59,7 @@
                             autofocus = "true"
                             class = "form-input"
                             style = "text-align:center">
-
+                        </input>
                         <button 
                             type = "submit" 
                             class = "form-entry"
@@ -80,11 +77,9 @@
                 </div>
                 <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBieEzGl9RhFYgLWAcRI7BtGLU1_Z264-A&libraries=places&callback=myMap"></script>
                 <script src = "./assets/js/scripts.js"></script>
-
-        </section>
-                
             </section>
         </div>
+
         <div class="tile is-parent">
             <article class="tile is-child notification is-success">
                 <div class="content">

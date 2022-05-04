@@ -24,16 +24,14 @@ var pos = {
 /*Tasty Recipe Variables*/
 var recipeNumber;
 var requestUrl;
-var recipeTitle = document.querySelector('title');
 var divNumber = document.getElementById('recipe');
-var title = document.querySelector('#title');       //grabs div container
-var infoSection = document.querySelector('#info');
+var title = document.querySelector('#title');       //grabs p container
 var servingSize = document.querySelector('#serving');
 var ingredientList = document.querySelector('#ingredient-list');
 var instructionsEl = document.querySelector('#instructions');
-var h2Title = document.createElement("h2");
-var recipeInfo = document.createElement("p");
-var ingredientsEl = document.createElement("li");
+var pTitle = document.createElement("p");
+//this is to choose the first recipe in this section
+var itemNum = 0;
 const options = {
  	method: 'GET',
  	headers: {
@@ -45,34 +43,36 @@ const options = {
 //SECTION TO GENERATE RECIPES USING TASTY's API//
 function getTastyAPI(){
     recipeNumber = divNumber.getAttribute('data-number');
-
     if(recipeNumber == 2){
-        requestUrl = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q=salad';
+        requestUrl = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q=soup';
     }else if(recipeNumber == 3){
-        requestUrl = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q=meat';
+        requestUrl = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=40&q=tacos';
     }else if(recipeNumber == 4){
-        requestUrl = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q=dessert';
+        requestUrl = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q=brownies';
     }
-    console.log(recipeNumber, requestUrl);
-    
+ 
     fetch(requestUrl, options)
         .then(response => response.json())
             .then(function(data){
-                //this is to choose the first recipe in this section
-                var itemNum = 0;
                 //extract title information
-                h2Title.textContent = data.results[itemNum].name;
-                title.appendChild(h2Title);
-
-                //if can find information or paragraph of text, insert here
-
+                pTitle.textContent = data.results[itemNum].name;
+                title.appendChild(pTitle);
+                console.log(data);
                 //extract information for serving size
                 var servings = data.results[itemNum].yields.slice(-2);
-                if( servings > 1)
-                    servingSize.textContent = servings + " people";
-                else
-                    servingSize.textContent =servings + " person";
-                
+                console.log(data.results[itemNum].yields);
+                if(servings > 1){
+                    servingSize.textContent = "Serves "+  servings + " people";
+                }else if (servings ===1){
+                    servingSize.textContent = "Serves 1 person";
+                }else
+                    servingSize.textContent = data.results[itemNum].yields;
+
+                console.log(data);
+                for(var i=0; i< data.results.length; i++){
+                    console.log(data.results[i].slug.toString());
+                }
+
                 //extract ingredient list
                 //data can have 2 for loops if ingredients in recipe are broken into sections
                 if(data.results[itemNum].sections.length>1){
