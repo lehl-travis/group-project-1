@@ -2,112 +2,104 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <title>Recipe</title>
 </head>
 
 <!--the data-number here will be looked at to figure out which recipe to display-->
 <body id="recipe" data-number ="2">
-    <div class = "container">
-        <!-- header for recipe-->
-        <div class = "header">
-            <div id="title"></div>
+    <!-- Header stays the same as index-->
+    <article class="panel is-primary">  
+        <p class="panel-heading">
+           Healthy Choice
+        </p>
+    <p class="panel-tabs">
+        <a class="is-active">All</a>
+        <a href="./index.html">SALAD</a>
+        <a href="./index-rec2.html">SOUP</a>
+        <a href="./index-rec3.html">MAIN ENTREE</a>
+        <a href="./index-rec4.html">DESERT</a>
+    </p>
+    </article>
+
+    <div class="tile is-ancestor">
+        <div class="tile is-vertical is-8">
+            <div class="tile">
+                <div class="tile is-parent is-vertical">
+                    <article class="tile is-child notification is-primary soup">
+                        <!-- title of recipe-->
+                        <p class = "title" id="title"></p>
+                    </article>
+                </div>
+            </div>
+
+            <!-- API Google Maps Section Starts Here-->
+            <section class="hero is-medium is-link" id="mapAndResults">
+                <!---HTML Element to hold map-->
+                <div id="googleMap"></div>
+
+                <!--Create a form for the map. User will enter in their zipcode and 
+                grocery stores nearby will appear.-->
+                <div id = "location-container">
+                    <form id = "search-nearby">
+                        <label 
+                            class = "form-location" 
+                            class = "form-entry"
+                            for = "zipCode">
+                            Enter Address
+                        </label>
+                        <input
+                            name = "zipCode"
+                            class = "form-entry"
+                            id = "zipCode"
+                            type = "text"
+                            autofocus = "true"
+                            class = "form-input"
+                            style = "text-align:center">
+                        </input>
+                        <button 
+                            type = "submit" 
+                            class = "form-entry"
+                            id = "submitBtn">
+                            Search Nearby
+                        </button>
+                    </form>
+
+                    <!--The locations pulled by the google maps API will appear and append here -->
+                    <div class = "results">
+                        <h4 class = "mapText">Showing grocery stores nearby.</h4>
+                        <!--This container will hold the list of places-->
+                        <div id = "locations-list" class = "list-group"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="tile is-parent">
+            <article class="tile is-child notification is-success">
+                <div class="content">
+                    <p class="title">Ingredients</p>
+                    <p class="subtitle"><span id ="serving"></span></p>
+                    <div class="content">
+                        <ul id="ingredient-list"></ul>
+                        <!-- Content -->
+                    </div>
+
+                    <div class="content">
+                        <p class="subtitle">Preparation</p>
+                        <ul id="instructions"></ul>
+                    </div>
+                </div>
+            </article>
         </div>
     </div>
-    <div class="navigation-menu">
-        <h2>Choose Your Meal</h2>
-        <ul class="navigation">
-            <li class="navigation"><a href="./index-rec2.html" class="nav-buttons">Salad</a></li>
-            <li class="navigation"><a href="./index-rec3.html" class="nav-buttons">Entree</a></li>
-            <li class="navigation"><a href="./index-rec4.html" class="nav-buttons">Dessert</a></li>
-        </ul>
-    </div>
+<body>
 
-    <!-- body of recipe-->
-    <div class="main-content">
-        <div id="ingredients">
-            <h3>Ingredients</h3>
-            <!--get serving size from recip api-->
-            <p>Serves <span id ="serving"></span></p>
-            <!--Get query selector for this UL ingredient-list & INSERT LI item here-->
-            <ul id="ingredient-list"></ul>
-        </div>
-
-        <!--Append instructions list here-->
-        <div>
-            <h3>Preparation</h3>
-            <!--Get query selector for instructions,INSERT LI items here -->
-            <ul id="instructions"></ul>
-        </div>
-    </div>
-
-    <div class = "footer">
-        <section>
-            <h3>Leave a review!</h3>
-            <form>
-                <div>
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" />
-                </div>
-                <div>
-                    <label for="review">Review:</label>
-                    <textarea id="review" cols="60" rows="5"></textarea>
-                </div>
-                <div>
-                    <button onclick="handleSubmit()">Submit</button>
-                </div>
-            </form>
-        </section>
-
-        <!-- VALERIE API MAP SECTION STARTS HERE-->
-        <!--Section with a map and list of results of grocery stores nearby-->
-        <!--User is prompted to enter in an address-->
-        <section id = "mapAndResults">
-            <!---HTML Element to hold map -->
-            <div id="googleMap"></div>
-           
-           <!--Create a form for the map. User will enter in their zipcode and 
-           grocery stores nearby will appear.-->
-           <div id = "location-container">
-               <form id = "search-nearby">
-                   <label 
-                       class = "form-location" 
-                       class = "form-entry"
-                       for = "zipCode">
-                       Enter Address 
-                   </label>
-
-                   <input 
-                       name = "zipCode"
-                       class = "form-entry"
-                       id = "zipCode"
-                       type = "text"
-                       autofocus = "true"
-                       class = "form-input"
-                       style = "text-align:center">
-
-                   <button 
-                       type = "submit" 
-                       class = "form-entry"
-                       id = "submitBtn">
-                       Search Nearby
-                   </button>
-               </form>
-
-               <!--The locations pulled by the google maps API will appear and append here-->
-               <div class = "results">
-                   <h4 class = "mapText">Showing grocery stores nearby.</h4>
-                   <!--This container will hold the list of places-->
-                   <div id = "locations-list" class = "list-group"></div>
-               </div>
-           </div>
-           
-           <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBieEzGl9RhFYgLWAcRI7BtGLU1_Z264-A&libraries=places&callback=myMap"></script>
-           <script src = "./assets/js/scripts.js"></script>;
-       </section>
-       <!-- VALERIE API MAP SECTION ENDS HERE-->
-
-    </footer>
-</body>
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBieEzGl9RhFYgLWAcRI7BtGLU1_Z264-A&libraries=places&callback=myMap"></script>
+<script src = "./assets/js/scripts.js"></script>
 
 </html>
