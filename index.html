@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+   
     <title>Recipe Generator</title>
 </head>
 
@@ -22,6 +23,43 @@
       <a href="./index-rec3.html">MAIN ENTREE</a>
       <a href="./index-rec4.html">DESERT</a>
     </p>
+        <button class="open-button" onclick="openForm()">Shopping Cart 🛒</button>
+
+        <div class="form-popup" id="myForm">
+        <form action="/action_page.php" class="form-container">
+            <p id="shoppingcart">Shopping Cart 🛒</p>
+       
+    
+            <label class="container">Cherry Tomatoes
+              <input type="checkbox">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container">Fresh Mozzarella
+              <input type="checkbox">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container">Basil Leaves
+              <input type="checkbox">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container">Extra Virgin Olive Oil
+              <input type="checkbox">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container">Balsamic Vinegar
+              <input type="checkbox">
+              <span class="checkmark"></span>
+            </label><label class="container">Kosher Salt
+              <input type="checkbox">
+              <span class="checkmark"></span>
+            </label><label class="container">Black Pepper
+              <input type="checkbox">
+            </script>
+              <span class="checkmark"></span>
+            </label>
+            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        </form>
+        </div>
     </article>
     <div class="tile is-ancestor">
         <div class="tile is-vertical is-8">
@@ -115,6 +153,8 @@
         </div>
     </div>
 </body>
+
+
 </html>    
 <!--
             <section>
@@ -137,4 +177,7 @@
                     </tbody>
                 </table>
             </section>
-        -->
+
+            <body>
+
+
