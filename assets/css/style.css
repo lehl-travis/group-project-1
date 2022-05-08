@@ -162,7 +162,54 @@ button.form-entry{
   height: 20%;
 }
 
+/*Media Query for maps*/
+@media screen and (max-width: 769px){
+  #mapAndResults{
+    height: max-content;
+  }
+  
+  /*The map will take up a little more than
+  half the width and the full height of the
+  mapAndResults container*/
+  #googleMap{
+      width: 100%;
+      height: 300px;
+  }
+  
+  /*The location-container
+  holds the form and the div with
+  the appended list of stores nearby*/
+  #location-container{
+    width: 90%;
+    height: max-content;
+    background-color: #485fc7;
+    padding:10px;
+  }
 
+  #search-nearby{
+    align-items:center;
+    margin-bottom:10px;
+  }
+
+  #locations-list img{
+    max-width:100px;
+    max-height:100px;
+    flex-wrap:wrap;
+  }
+  
+  input, select, label {
+    display:block;
+    width: 100%;
+    min-height:fit-content;
+    text-align:left;
+    padding:5px;
+    margin-bottom:20px;
+  }
+  
+  button.form-entry{
+    margin-top:20px;
+  }
+}
 /* The container */
 .container {
   display: block;

@@ -138,6 +138,7 @@ function myMap(){
             lat: latitude,
             lng: longitude
         }
+        
         //Infowindow location also changes to new center.
         infoWindow.setPosition(new google.maps.LatLng(latitude,longitude));
         infoWindow.setContent('Location found.');
